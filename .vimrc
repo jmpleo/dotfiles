@@ -88,9 +88,9 @@ Plugin 'pangloss/vim-javascript'
 Plugin 'mxw/vim-jsx'
 
 " Python
-Plugin 'klen/python-mode'                    " Vim python-mode. PyLint, Rope, PyDoc, breakpoints from box
-Plugin 'vim-scripts/indentpython.vim'
-"Plugin 'davidhalter/jedi-vim'
+ " Plugin 'klen/python-mode'                    " Vim python-mode. PyLint, Rope, PyDoc, breakpoints from box
+ " Plugin 'vim-scripts/indentpython.vim'
+ " Plugin 'davidhalter/jedi-vim'
 
 " Git
 Plugin 'tpope/vim-fugitive'                  " Git plugin for Vim. So awesome, it should be illegal
@@ -131,12 +131,12 @@ filetype plugin indent on
 if filereadable(expand('$HOME/.vim/bundle/vim-colorschemes/README.md'))
     " Default dark scheme
     " colorscheme Tomorrow-Night
-    " colorscheme gruvbox
+     colorscheme gruvbox
     " colorscheme nordisk
     " colorscheme solarized
 
     " Default light scheme
-     colorscheme PaperColor " sets the colorscheme
+    " colorscheme PaperColor " sets the colorscheme
 
     set background=dark
     "set background=light
@@ -190,8 +190,8 @@ set smartcase           " but become case sensitive if you type uppercase charac
 " this can cause problems with other filetypes
 " see comment on this SO question
 " http://stackoverflow.com/questions/234564/tab-key-4-spaces-and-auto-indent-after-curly-braces-in-vim/234578#234578
-set tabstop=2           " number of spaces a tab counts for
-set shiftwidth=2        " spaces for autoindents
+set tabstop=4           " number of spaces a tab counts for
+set shiftwidth=4        " spaces for autoindents
 set expandtab           " turn a tab into spaces
 set smartindent         " smart auto indenting
 set autoindent          " on new lines, match indent of previous line
@@ -593,8 +593,12 @@ let g:jsx_pragma_required = 1
 "                              python-mode                                "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+"let g:pymode_lint_checkers = {}
 let g:pymode_options_max_line_length=80
 let g:pymode_python = 'python3'
+
+let g:jedi#auto_initialization = 0
+
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                              syntastic                                  "
