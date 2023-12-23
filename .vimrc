@@ -53,6 +53,7 @@ Plugin 'flazz/vim-colorschemes'              " One stop shop for vim colorscheme
 Plugin 'bling/vim-airline'                   " Lean & mean status/tabline for vim that's light as air
 Plugin 'vim-airline/vim-airline-themes'      " Themes for vim-airline plugin
 Plugin 'ryanoasis/vim-devicons'              " Enble fancy icons in vim
+Plugin 'tribela/vim-transparent'
 
 " Surround
 Plugin 'tpope/vim-surround'                  " All about surroundings: parentheses, brackets, quotes, XML tags, and more
