@@ -2,8 +2,13 @@
 #df | grep /$ | egrep "[0-9]{1,3}%" -o
 
 df -BM | grep /dev/sda5 | awk '{
-    proc=100*$3/($3+$4);
-    total=($3+$4)/1024;
-    used=$3/1024;
-    printf("%dG (%.2f%%)\n", used, proc);
+    proc = 100 * $3 / ($3 + $4)
+    total = ($3 + $4) / 1024
+    used = $3 / 1024
+    bar = ""
+    barlen = 8
+    up = proc / (100 / barlen)
+    for (i = 1; i <= up; i++) { bar = bar "#" }
+    for (i = up + 1; i <= barlen; i++) { bar = bar "." }
+    printf("%dG [%s] (%.2f%%)\n", used, bar, proc)
 }'
