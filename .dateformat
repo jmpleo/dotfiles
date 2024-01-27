@@ -1,1 +1,1 @@
-%A <b>%_d</b> %B <b>%H:%M</b>
+%A <b>%_d</b> %B <b>%H:%M</b><span color="grey">:%S</span>

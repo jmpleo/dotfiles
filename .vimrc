@@ -132,7 +132,7 @@ filetype plugin indent on
 if filereadable(expand('$HOME/.vim/bundle/vim-colorschemes/README.md'))
     " Default dark scheme
     " colorscheme Tomorrow-Night
-     colorscheme gruvbox
+    colorscheme gruvbox
     " colorscheme nordisk
     " colorscheme solarized
 
