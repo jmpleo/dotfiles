@@ -1,31 +1,81 @@
 #include <stdio.h>
 #include <unistd.h>
 #include <sys/sysinfo.h>
+#include <time.h>
+#include <stdlib.h>
+#include <inttypes.h>
+#include <limits.h>
 
-int main() {
+
+int main(int argc, char** argv)
+{
+    if (argc < 2) {
+        fprintf(stderr, ""
+            "\n  Usage: meminfo <TIMEOUT> [BAR LEN]"
+            "\n         TIMEOUT: Time in seconds for wait next output."
+            "\n                  0 - output and exit."
+            "\n         BAR LEN: Indicate bar size in symbols numbers. Default 16"
+            "\n"
+        );
+        return 1;
+    }
+
+    int sec = atoi(argv[1]);
+    int barSize = 16;
+
+    if (argc == 3) {
+        barSize = atoi(argv[2]);
+    }
+
+    if (sec < 0) {
+        fprintf(stderr, "TIMEOUT need more 0\n");
+        return 1;
+    }
+
+    const int MAX_BAR_SIZE = 200;
+    char loadBar[MAX_BAR_SIZE + 1];
+
+    if (barSize < 2 || barSize > MAX_BAR_SIZE) {
+        fprintf(stderr, "BAR LEN need >=2 and <=%d\n", MAX_BAR_SIZE);
+        return 1;
+    }
+
+    loadBar[barSize] = '\0';
+
     struct sysinfo memInfo;
-    sysinfo(&memInfo);
 
-    long long totalMemory = memInfo.totalram;
-    totalMemory *= memInfo.mem_unit;
+    long long totalMemory, freeMemory, usedMemory;
+    double memoryPercentage;
 
-    long long freeMemory = memInfo.freeram;
-    freeMemory *= memInfo.mem_unit;
 
-    long long usedMemory = totalMemory - freeMemory;
+    for (;;) {
 
-    double memoryPercentage = (double)usedMemory / (double)totalMemory * 100.0;
+        sysinfo(&memInfo);
 
-    int i, n = 8;
-    char load[n + 1]; load[n] = '\0';
-    for (i = 0; i < (int)(memoryPercentage / (100. / n)); ++i) load[i] = '#';
-    for (; i < n; ++i) load[i] = '.';
+        totalMemory = memInfo.totalram * memInfo.mem_unit;
+        freeMemory = memInfo.freeram * memInfo.mem_unit;
 
-    // printf("%2.2fG (%2.2f%%) / %lldG\n", usedMemory / 1024. / 1024. / 1024., memoryPercentage, totalMemory >> 30);
-    printf("%2.2fG [%s] (%2.2f%%)\n", usedMemory / 1024. / 1024. / 1024., load, memoryPercentage);
-    // printf("\033[1;37m%.2fG (\033[0m%.2f%%\033[1;37m) / %lldG\n\033[0m",
-    //         usedMemory / 1024. / 1024. / 1024., memoryPercentage, totalMemory >> 30);
+        usedMemory = totalMemory - freeMemory;
+        memoryPercentage = (double)usedMemory / (double)totalMemory * 100.0;
 
+        int i;
+        for (i = 0; i < (int)(memoryPercentage * (barSize / 100.)); ++i) {
+            loadBar[i] = '#';
+        }
+        for (; i < barSize; ++i) {
+            loadBar[i] = '.';
+        }
+
+        if (sec == 0) {
+            break;
+        }
+
+        printf("\r%2.2fG [%s] (%2.2f%%)", (double)usedMemory / (1 << 30), loadBar, memoryPercentage);
+        fflush(stdout);
+        sleep(sec);
+    }
+
+    printf("%2.2fG [%s] (%2.2f%%)\n", (double)usedMemory / (1 << 30), loadBar, memoryPercentage);
     return 0;
 }
 
