@@ -5,10 +5,11 @@ free --bytes -w | awk 'NR==2 {
     used = $3
     proc = 100 * used / total
     bar = ""
-    barlen = 32
+    barlen = 8
     up = proc / (100 / barlen)
-    for (i = 1; i <= up; i++) { bar = bar "@" }
-    for (i = up; i <= barlen; i++) { bar = bar "_"  }
+    for (i = 1; i <= up; i++) { bar = bar "#" }
+    bar = bar ""
+    for (i = up; i <= barlen; i++) { bar = bar "."  }
     printf("%2.2fG [%s] (%2.2f%%)\n", (used / 1024 / 1024 / 1024), bar, proc)
 }'
 

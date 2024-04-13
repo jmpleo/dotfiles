@@ -47,6 +47,14 @@ Plugin 'mhinz/vim-startify'                  " Start screen for vim
 Plugin 'mkitt/tabline.vim'                   " Configure tab labels within vim with a very succinct output
 Plugin 'Asheq/close-buffers.vim'
 
+"Plugin 'autozimu/LanguageClient-neovim', {
+"    \ 'branch': 'next',
+"    \ 'do': 'bash install.sh',
+"    \ }
+"
+"" (Optional) Multi-entry selection UI.
+"Plugin 'junegunn/fzf'
+
 " Appearance, colors, icons
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'flazz/vim-colorschemes'              " One stop shop for vim colorschemes
@@ -184,7 +192,7 @@ set winaltkeys=no       " turns of the Alt key bindings to the gui menu
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                            EDITOR SETTINGS                              "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
+set foldmethod=syntax
 set nowrap              " Don't wrap lines longer than window width
 set ignorecase          " case insensitive searching
 set smartcase           " but become case sensitive if you type uppercase characters
@@ -581,6 +589,31 @@ let g:cpp_experimental_simple_template_highlight = 1
 " Highlight of library concepts
 let g:cpp_concepts_highlight = 1
 
+
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"
+"
+"" Required for operations modifying multiple buffers like rename.
+"let g:LanguageClient_serverCommands = {
+"    \ 'rust': ['~/.cargo/bin/rustup', 'run', 'stable', 'rls'],
+"    \ 'javascript': ['/usr/local/bin/javascript-typescript-stdio'],
+"    \ 'javascript.jsx': ['tcp://127.0.0.1:2089'],
+"    \ 'python': ['/usr/local/bin/pyls'],
+"    \ 'ruby': ['~/.rbenv/shims/solargraph', 'stdio'],
+"    \ }
+"
+"" note that if you are using Plug mapping you should not use `noremap` mappings.
+"nmap <F5> <Plug>(lcn-menu)
+"" Or map each action separately
+"nmap <silent>K <Plug>(lcn-hover)
+"nmap <silent> gd <Plug>(lcn-definition)
+"nmap <silent> <F2> <Plug>(lcn-rename)
+"
+"
+"
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                              javascript
