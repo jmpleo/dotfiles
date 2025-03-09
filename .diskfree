@@ -1,15 +1,17 @@
 #!/bin/sh
 
-df -BM | grep /dev/sda5 | awk '{
-    proc = 100 * $3 / ($3 + $4)
-    total = ($3 + $4) / 1024
-    used = $3 / 1024
-    bar = ""
-    barlen = 10
-    up = proc / (100 / barlen)
-    for (i = 1; i <= up; i++) { bar = bar "@" }
-    for (i = up; i <= barlen; i++) { bar = bar "_" }
-    #printf("%3dG [%s] (%.2f%%)\n", used, bar, proc)
-    printf("%3dG (%.2f%%)\n", used, proc)
+df -BM | grep $1 | awk '{
+    printf("[%s....%s]", $1, $5)
 }'
-
+#    proc = 100 * $3 / ($3 + $4)
+#    total = ($3 + $4) / 1024
+#    used = $3 / 1024
+#    bar = ""
+#    barlen = 10
+#    up = proc / (100 / barlen)
+#    for (i = 1; i <= up; i++) { bar = bar "@" }
+#    for (i = up; i <= barlen; i++) { bar = bar "_" }
+#    #printf("%3dG [%s] (%.2f%%)\n", used, bar, proc)
+#    printf("%s: %3dG (%.2f%%)\n", $1, used, proc)
+#}'
+#

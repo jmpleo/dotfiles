@@ -75,6 +75,9 @@ Plugin 'vim-syntastic/syntastic'             " Syntax checking plugin for Vim
 " Indentation
 Plugin 'yggdroot/indentline'                 " Display thin vertical lines at each indentation level
 
+
+Plugin 'chrisbra/csv.vim'
+
 " Navigation
 Plugin 'ctrlpvim/ctrlp.vim'                  " Full path fuzzy file, buffer, mru, tag, ... finder for Vim
 Plugin 'scrooloose/nerdtree'                 " File system explorer for vim
@@ -85,7 +88,10 @@ Plugin 'a.vim'                               " Alternate files quickly (.c <--> 
 Plugin 'octol/vim-cpp-enhanced-highlight'    " Advanced highlighting of C++ code
 
 "
-Plugin 'neoclide/coc.nvim', {'branch': 'release'}
+Plugin 'neoclide/coc.nvim', {'branch': 'master', 'do': 'npm ci'}
+
+" TACT
+Plugin 'tact-lang/tact.vim'
 
 Plugin 'lifepillar/pgsql.vim'
 
@@ -139,15 +145,23 @@ filetype plugin indent on
 
 if filereadable(expand('$HOME/.vim/bundle/vim-colorschemes/README.md'))
     " Default dark scheme
-    " colorscheme Tomorrow-Night
-    colorscheme gruvbox
+    " colorscheme PaperColor
+    " colorscheme iceberg
+    " colorscheme nord
+    " colorscheme hybrid_material
+
+    """" nice
+    colorscheme Tomorrow-Night
+    " colorscheme habamax
+    " colorscheme gruvbox
+
+
     " colorscheme nordisk
     " colorscheme solarized
 
     " Default light scheme
-    " colorscheme PaperColor " sets the colorscheme
 
-    set background=dark
+    " set background=dark
     "set background=light
 endif
 
@@ -498,7 +512,8 @@ let g:webdevicons_enable_startify = 1
 
 " Always display statusline
 " Fancy theme. Requires vim-airline-themes
-let g:airline_theme = 'distinguished' " 'angr'
+"let g:airline_theme = 'distinguished' " 'angr'
+"let g:airline_theme = 'angr'
 
 " Use fancy symbols
 let g:airline_powerline_fonts = 1
@@ -596,7 +611,7 @@ let g:cpp_concepts_highlight = 1
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "
 "
-"" Required for operations modifying multiple buffers like rename.
+" Required for operations modifying multiple buffers like rename.
 "let g:LanguageClient_serverCommands = {
 "    \ 'rust': ['~/.cargo/bin/rustup', 'run', 'stable', 'rls'],
 "    \ 'javascript': ['/usr/local/bin/javascript-typescript-stdio'],
