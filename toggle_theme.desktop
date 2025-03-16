@@ -1,0 +1,10 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Toggle Theme, Icons, WM, Terminal & Vim Background
+Comment=Toggle between Gruvbox-Dark-BL/Gruvbox Plus Dark and WhiteSur-Light/WhiteSur-light themes
+Exec=/home/j/.dotfiles/toggle_theme.sh
+Icon=preferences-desktop-theme
+Terminal=false
+Categories=Utility;
+

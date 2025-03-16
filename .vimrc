@@ -151,9 +151,9 @@ if filereadable(expand('$HOME/.vim/bundle/vim-colorschemes/README.md'))
     " colorscheme hybrid_material
 
     """" nice
-    colorscheme Tomorrow-Night
+    " colorscheme Tomorrow-Night
     " colorscheme habamax
-    " colorscheme gruvbox
+    colorscheme gruvbox
 
 
     " colorscheme nordisk
@@ -161,8 +161,7 @@ if filereadable(expand('$HOME/.vim/bundle/vim-colorschemes/README.md'))
 
     " Default light scheme
 
-    " set background=dark
-    "set background=light
+    set background=dark
 endif
 
 " Adjust highlighting colors
