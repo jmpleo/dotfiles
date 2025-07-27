@@ -4,12 +4,22 @@ free --bytes -w | awk 'NR==2 {
     total = $2
     used = $3
     proc = 100 * used / total
-    bar = ""
-    barlen = 4
-    up = proc / (100 / barlen)
-    for (i = 1; i <= up; i++) { bar = bar "#" }
-    bar = bar ""
-    for (i = up; i <= barlen; i++) { bar = bar "."  }
-    printf("%2.1fG\n", (used / 1024 / 1024 / 1024))
+    height = 8
+    # Determine number of rows to fill.
+    filled = int(proc / (100 / height) + 0.5)
+
+    for (r = 1; r <= height; r++) {
+        if (r <= filled)
+            bar[r] = "|#####|"
+        else
+            bar[r] = "|     |"
+    }
+
+    printf("|%2.1f%%|\n", proc)
+
+    for (r = height; r >= 1; r--) {
+        print bar[r]
+    }
 }'
+
 

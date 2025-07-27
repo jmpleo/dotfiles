@@ -1,7 +1,7 @@
 #!/bin/sh
 
 free --bytes -w | awk '
-NR==2 {
+NR==3 {
     total = $2
     used  = $3
 
